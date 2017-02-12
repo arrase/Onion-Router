@@ -16,6 +16,7 @@ case "$1" in
     /usr/sbin/dhcpd -q -cf /etc/onion_router/dhcpd.conf -pf /var/run/dhcpd.pid $INTERFACE
     
     [ -f /var/run/tor/tor.pid ] && kill $(cat /var/run/tor/tor.pid) && sleep 5
+    [ -d /var/run/tor/ ] || (mkdir /var/run/tor/ && chown debian-tor:debian-tor /var/run/tor/ && chmod 700 /var/run/tor/)
     /usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc --hush -f /etc/onion_router/torrc.custom
     
     iptables -F
@@ -33,7 +34,8 @@ case "$1" in
     [ -f /var/run/dhcpd.pid ] && kill $(cat /var/run/dhcpd.pid)
     [ -f /var/run/dhcpd.pid ] && rm /var/run/dhcpd.pid
     
-    [ -f /var/run/tor/tor.pid ] && kill $(cat /var/run/tor/tor.pid)
+    [ -f /var/run/tor/tor.pid ] && kill $(cat /var/run/tor/tor.pid) && sleep 5
+    [ -d /var/run/tor/ ] && rm -rf /var/run/tor
     
     iptables -F
     iptables -t nat -F
