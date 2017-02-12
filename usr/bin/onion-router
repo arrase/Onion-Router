@@ -4,7 +4,7 @@
 
 case "$1" in
   start)
-    ifdown $INTERFACE
+    ifconfig $INTERFACE down
     ifconfig $INTERFACE 192.168.42.1
     
     echo 1 > /proc/sys/net/ipv4/ip_forward
