@@ -15,7 +15,7 @@ case "$1" in
     [ -f /var/run/dhcpd.pid ] && kill $(cat /var/run/dhcpd.pid)
     /usr/sbin/dhcpd -q -cf /etc/onion_router/dhcpd.conf -pf /var/run/dhcpd.pid $INTERFACE
     
-    [ -f /var/run/tor/tor.pid ] && kill $(cat /var/run/tor/tor.pid)
+    [ -f /var/run/tor/tor.pid ] && kill $(cat /var/run/tor/tor.pid) && sleep 5
     /usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc --hush -f /etc/onion_router/torrc.custom
     
     sudo iptables -F
@@ -31,6 +31,7 @@ case "$1" in
     [ -f /var/run/hostapd.pid ] && kill $(cat /var/run/hostapd.pid)
     
     [ -f /var/run/dhcpd.pid ] && kill $(cat /var/run/dhcpd.pid)
+    [ -f /var/run/dhcpd.pid ] && rm /var/run/dhcpd.pid
     
     [ -f /var/run/tor/tor.pid ] && kill $(cat /var/run/tor/tor.pid)
     
