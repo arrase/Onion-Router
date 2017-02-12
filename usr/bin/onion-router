@@ -18,8 +18,8 @@ case "$1" in
     [ -f /var/run/tor/tor.pid ] && kill $(cat /var/run/tor/tor.pid) && sleep 5
     /usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc --hush -f /etc/onion_router/torrc.custom
     
-    sudo iptables -F
-    sudo iptables -t nat -F
+    iptables -F
+    iptables -t nat -F
     iptables -t nat -A PREROUTING -i $INTERFACE -p tcp --dport 22 -j REDIRECT --to-ports 22
     iptables -t nat -A PREROUTING -i $INTERFACE -p udp --dport 53 -j REDIRECT --to-ports 53
     iptables -t nat -A PREROUTING -i $INTERFACE -p tcp --syn -j REDIRECT --to-ports 9040
@@ -35,8 +35,8 @@ case "$1" in
     
     [ -f /var/run/tor/tor.pid ] && kill $(cat /var/run/tor/tor.pid)
     
-    sudo iptables -F
-    sudo iptables -t nat -F
+    iptables -F
+    iptables -t nat -F
     ;;
   *)
     echo "Usage: /usr/bin/onion-router {start|stop}"
