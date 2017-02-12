@@ -1,17 +1,17 @@
-### Onion Router for Raspberry Pi
+# Onion Router for Raspberry Pi
 
 Easy onion router setup for raspberry pi
 
 Based on [Onion-pi](https://learn.adafruit.com/onion-pi?view=all)
 
-## Install
+### Install
 
     sudo ./install.sh
 
-## Usage
+### Usage
 
     /usr/bin/onion-router {start|stop} 
 
-## Configuration
+### Configuration
 
 All files are under '/etc/onion_router' directory
