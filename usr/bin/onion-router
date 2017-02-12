@@ -25,7 +25,7 @@ case "$1" in
     iptables -t nat -A PREROUTING -i $INTERFACE -p tcp --syn -j REDIRECT --to-ports 9040
     ;;
   stop)
-    ifdown $INTERFACE
+    ifconfig $INTERFACE down
     echo 0 > /proc/sys/net/ipv4/ip_forward
     
     [ -f /var/run/hostapd.pid ] && kill $(cat /var/run/hostapd.pid)
