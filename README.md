@@ -10,7 +10,7 @@ Based on [Onion-pi](https://learn.adafruit.com/onion-pi?view=all)
 
 ## Usage
 
-   /usr/bin/onion-router {start|stop} 
+    /usr/bin/onion-router {start|stop} 
 
 ## Configuration
 
